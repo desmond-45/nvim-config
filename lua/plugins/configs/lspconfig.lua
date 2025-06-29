@@ -1,5 +1,5 @@
 dofile(vim.g.base46_cache .. "lsp")
-require "nvchad.lsp"
+require "custom.configs.nvchad_lsp"
 
 local M = {}
 local utils = require "core.utils"
@@ -16,7 +16,8 @@ M.on_attach = function(client, bufnr)
     require("nvchad.signature").setup(client)
   end
 
-  if not utils.load_config().ui.lsp_semantic_tokens and client.supports_method "textDocument/semanticTokens" then
+  if not utils.load_config().ui.lsp_semantic_tokens
+      and client:supports_method("textDocument/semanticTokens", bufnr) then
     client.server_capabilities.semanticTokensProvider = nil
   end
 end
@@ -41,7 +42,7 @@ M.capabilities.textDocument.completion.completionItem = {
   },
 }
 
-require("lspconfig").lua_ls.setup {
+vim.lsp.config("lua_ls", {
   on_attach = M.on_attach,
   capabilities = M.capabilities,
 
@@ -62,6 +63,7 @@ require("lspconfig").lua_ls.setup {
       },
     },
   },
-}
+})
+vim.lsp.enable "lua_ls"
 
 return M

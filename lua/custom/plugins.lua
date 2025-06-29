@@ -6,12 +6,15 @@ local plugins = {
   -- Override plugin definition options
   {
     "neovim/nvim-lspconfig",
+    init = function()
+      require("core.utils").lazy_load "nvim-lspconfig"
+    end,
     dependencies = {
       -- format & linting
       {
         "nvimtools/none-ls.nvim",
         dependencies = {
-            "nvimtools/none-ls-extras.nvim",
+          "nvimtools/none-ls-extras.nvim",
         },
         config = function()
           require "custom.configs.null-ls"
@@ -37,7 +40,6 @@ local plugins = {
 
   {
     "nvim-tree/nvim-tree.lua",
-    lazy = false,
     opts = overrides.nvimtree,
   },
 
@@ -52,37 +54,39 @@ local plugins = {
 
   {
     "tpope/vim-fugitive",
-    lazy = false,
+    cmd = { "Git", "G", "Gdiffsplit", "Gvdiffsplit", "Ggrep", "GMove", "GDelete", "GBrowse" },
   },
   {
     "stevearc/aerial.nvim",
-    version = "*", -- always use latest stable version
+    version = "*",
+    keys = {
+      {
+        "<leader>a",
+        "<cmd>AerialToggle!<CR>",
+        desc = "Toggle aerial",
+      },
+    },
     config = function()
       require("aerial").setup {
-        -- optionally use on_attach to set keymaps when aerial has attached to a buffer
         max_width = { 40, 0.25 },
         resize_to_content = true,
         on_attach = function(bufnr)
-          -- Jump forwards/backwards with '{' and '}'
           vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
           vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
         end,
       }
-      -- You probably also want to set a keymap to toggle aerial
-      vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
     end,
-    cmd = { "AerialToggle", "AerialPrev", "AerialNext" },
+    cmd = { "AerialToggle", "AerialOpen", "AerialPrev", "AerialNext" },
   },
   {
     "lervag/vimtex",
-    lazy = false,
+    ft = { "tex" },
+    version = "^2.17",
     config = function()
       vim.g.vimtex_view_method = "skim"
       vim.g.vimtex_view_general_options = [[-r]]
       vim.g.vimtex_compiler_method = "latexmk"
     end,
-    ft = { "tex" },
-    version = "v2.15", -- Add this line to pin VimTeX to version 2.15
   },
   -- To make a plugin not be loaded
   -- {

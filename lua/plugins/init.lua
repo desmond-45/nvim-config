@@ -140,9 +140,6 @@ local default_plugins = {
     init = function()
       require("core.utils").lazy_load "nvim-lspconfig"
     end,
-    config = function()
-      require "plugins.configs.lspconfig"
-    end,
   },
 
   -- load luasnips + cmp related in insert mode only
@@ -161,7 +158,7 @@ local default_plugins = {
       -- },
       {
         "L3MON4D3/LuaSnip",
-        version = "2.3.0",
+        version = "^2.5.0",
         dependencies = {
           "rafamadriz/friendly-snippets",
         },
