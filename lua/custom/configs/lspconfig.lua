@@ -18,7 +18,7 @@ end
 -- lspconfig.pyright.setup { blabla} filetypes = {"python"},
 lspconfig.pyright.setup {
   on_attach = on_attach,
-  capabilites = capabilities,
+  capabilities = capabilities,
   filetypes = { "python" },
 }
 

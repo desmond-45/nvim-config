@@ -1,13 +1,47 @@
--- To find any highlight groups: "<cmd> Telescope highlights"
--- Each highlight group can take a table with variables fg, bg, bold, italic, etc
--- base30 variable names can also be used as colors
-
 local M = {}
 
----@type Base46HLGroupsList
 M.override = {
   Comment = {
     italic = false,
+  },
+  -- Active buffer tab
+  TbLineBufOn = {
+    fg = "#ffffff",
+    bg = "#222222",
+    bold = true,
+  },
+  -- Inactive buffer tabs
+  TbLineBufOff = {
+    fg = "#bbbbbb",
+    bg = "#000000",
+  },
+  -- Active buffer close button
+  TbLineBufOnClose = {
+    fg = "#ffffff",
+    bg = "#222222",
+  },
+  -- Inactive buffer close button
+  TbLineBufOffClose = {
+    fg = "#bbbbbb",
+    bg = "#000000",
+  },
+  -- Active modified buffer
+  TbLineBufOnModified = {
+    fg = "#17fe04",
+    bg = "#000000",
+  },
+  -- Inactive modified buffer
+  TbLineBufOffModified = {
+    fg = "#17fe04",
+    bg = "#000000",
+  },
+  -- Inactive tab page
+  TbLineTabOff = {
+    fg = "#bbbbbb",
+    bg = "#30343f",
+  },
+  TblineFill = {
+    bg = "#000000",
   },
 }
 

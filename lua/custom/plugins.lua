@@ -9,7 +9,10 @@ local plugins = {
     dependencies = {
       -- format & linting
       {
-        "jose-elias-alvarez/null-ls.nvim",
+        "nvimtools/none-ls.nvim",
+        dependencies = {
+            "nvimtools/none-ls-extras.nvim",
+        },
         config = function()
           require "custom.configs.null-ls"
         end,
@@ -48,23 +51,17 @@ local plugins = {
   },
 
   {
-    "git@github.com:tpope/vim-fugitive.git",
+    "tpope/vim-fugitive",
     lazy = false,
-  },
-
-  {
-    "f-person/git-blame.nvim",
-    lazy = true,
-    config = function()
-      vim.g.gitblame_enabled = 1
-    end,
   },
   {
     "stevearc/aerial.nvim",
+    version = "*", -- always use latest stable version
     config = function()
       require("aerial").setup {
         -- optionally use on_attach to set keymaps when aerial has attached to a buffer
         max_width = { 40, 0.25 },
+        resize_to_content = true,
         on_attach = function(bufnr)
           -- Jump forwards/backwards with '{' and '}'
           vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
