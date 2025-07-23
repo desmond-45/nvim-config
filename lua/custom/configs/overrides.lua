@@ -56,7 +56,10 @@ M.nvimtree = {
   git = {
     enable = true,
   },
-
+  filters = {
+    dotfiles = false, -- Show .env.*, .gitignore etc.
+    git_ignored = false,
+  },
   renderer = {
     highlight_git = true,
     icons = {

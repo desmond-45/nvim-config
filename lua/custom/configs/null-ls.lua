@@ -61,7 +61,14 @@ local sources = {
 
   -- Optional formatters
   null_ls.builtins.formatting.prettier.with {
-    filetypes = { "json", "yaml", "markdown", "html", "css", "python", "lua" },
+    filetypes = { "json", "yaml", "markdown", "html", "css", "python", "lua", "typescript" },
+    extra_args = {
+      "--single-quote",
+      "--tab-width",
+      "4",
+      "--use-tabs",
+      "false",
+    },
   },
   null_ls.builtins.formatting.stylua,
   null_ls.builtins.formatting.shfmt.with {
