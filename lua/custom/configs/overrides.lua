@@ -13,13 +13,19 @@ M.treesitter = {
     "markdown",
     "markdown_inline",
     "python",
+    "go",
     "yaml",
+  },
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = true,
+    -- Neovim 0.12 crashes markdown_inline injections with
+    -- "attempt to call method 'range' (a nil value)".
+    disable = { "markdown", "markdown_inline" },
   },
   indent = {
     enable = true,
-    -- disable = {
-    --   "python"
-    -- },
+    disable = { "markdown" },
   },
 }
 
@@ -45,6 +51,8 @@ M.mason = {
     "pyright",
     -- go
     "gopls",
+    "goimports",
+    "golangci-lint",
   },
 }
 

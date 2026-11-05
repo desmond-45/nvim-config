@@ -39,6 +39,7 @@ local sources = {
   null_ls.builtins.formatting.shfmt.with {
     args = { "-i", "4" },
   },
+  null_ls.builtins.formatting.goimports,
 }
 
 null_ls.setup {

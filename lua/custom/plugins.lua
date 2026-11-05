@@ -39,11 +39,31 @@ local plugins = {
   },
 
   {
+    "numToStr/Comment.nvim",
+    opts = {
+      -- Neovim 0.12 treesitter can throw here; native commentstring
+      -- is enough for space-/ and avoids [Comment.nvim] nil.
+      pre_hook = function()
+        local cstr = vim.bo.commentstring
+        if cstr ~= nil and cstr ~= "" then
+          return cstr
+        end
+      end,
+    },
+  },
+
+  {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
   },
 
   -- Install a plugin
+  {
+    "github/copilot.vim",
+    event = "InsertEnter",
+    cmd = "Copilot",
+  },
+
   {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
