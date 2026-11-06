@@ -4,7 +4,7 @@ local sources = {
   require("none-ls.diagnostics.ruff").with {
     extra_args = {
       "--config",
-      "lint.ignore = ['I']",
+      "lint.ignore = ['I', 'N999']",
       "--config",
       "preview = true",
     },
@@ -28,11 +28,10 @@ local sources = {
       "markdown",
       "html",
       "css",
-      "python",
-      "lua",
       "javascript",
-      "jsx",
-      "tsx",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
     },
   },
   null_ls.builtins.formatting.stylua,
