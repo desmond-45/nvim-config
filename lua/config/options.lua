@@ -7,7 +7,8 @@ g.mapleader = " "
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 
-opt.guicursor = ""
+-- block in normal; thin | bar in insert
+opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
 
 opt.laststatus = 3
 opt.showmode = false
