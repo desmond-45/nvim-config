@@ -60,9 +60,31 @@ local function setup_lsp(name, opts)
   vim.lsp.enable(name)
 end
 
-for _, lsp in ipairs { "html", "cssls", "clangd", "lua_ls" } do
+for _, lsp in ipairs { "html", "cssls", "clangd" } do
   setup_lsp(lsp)
 end
+
+setup_lsp("lua_ls", {
+  settings = {
+    Lua = {
+      runtime = {
+        version = "LuaJIT",
+      },
+      diagnostics = {
+        globals = { "vim" },
+      },
+      workspace = {
+        checkThirdParty = false,
+        library = {
+          vim.env.VIMRUNTIME,
+        },
+      },
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+})
 
 setup_lsp("ts_ls", {
   filetypes = {
